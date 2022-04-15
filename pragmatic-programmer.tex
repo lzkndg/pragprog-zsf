@@ -9,7 +9,7 @@
 \maketitle
 % \newpage
 
-% \tableofcontents
+\tableofcontents
 % \newpage
 
 \section{Intro}
@@ -71,24 +71,84 @@ Idealfall auch vom Arbeitgeber geschätzt und vergütet, da es vor allem auch di
 - debugging\\
 - engineering daybook\\
 
-\section{Good Design: Entscheidungen treffen}
+\section{The Essence of Good Design: Entscheidungen treffen}
+
+\subsection{ETC - Easier to change}
+Ein System hat ein gutes Design, wenn es sich an die Menschen, die es nutzen, anpassen kann. 
+
+\emph{Easier to change} ist deshalb das grundlegende Prinzip, auf dem fast alle weiteren Designprinzipien aufbauen. Es soll keine feste Vorgabe sein, sondern eine Hilfe.
+Immer wenn eine Entscheidung zwischen Vorgehen A oder B getroffen werden muss, sollte man sich hieran orientieren.
+
+Um diese Denkweise zu verinnerlichen kann man sich diese Frage bewusst immer wieder stellen. Beim Speichern einer Datei, beim Schreiben eines Tests oder beim Beheben eines Bugs. 
+Ist der Code, den ich soeben geschrieben habe \emph{easy to change}?
+
+\subsection{DRY - Don't repeat yourself}
+\emph{Jedes Stück an Information braucht eine einzige, eindeutige und authoritative Repräsentation in einem System.}
+
+Das Duplizieren von Informationen führt unweigerlich zu Inkonsistenz. Sei dies im Code, in Dokumentationen oder anderswo. 
+Weitere, nicht ganz so offensichtliche Arten von Duplikation:
+\subsubsection*{Duplikation der Repräsentation}
+\emph{Interne/Externe APIs:}
+Das Wissen über die ausgetauschten Daten bzw. deren Struktur muss grundsätzlich auf beiden Seiten der Kommunikation vorhanden sein. 
+Abhilfe schaffen können hier Sprachen zur neutralen Spezifikation von APIs, die idealerweise zentral abgelegt werden und zur Erstellung von automatisierten Tests und Test-Clients verwendet werden können.
+\\
+\\
+\emph{Datenquellen:}
+Falls möglich sollten Objekte aus ihrer Dantenbankrepresentation automatisiert erstellt werden können. 
+Andernfalls müssen Änderungen an der Struktur an verschiedenen Orten durchgeführt werden.
+
+\subsubsection*{Duplikation zwischen Entwicklern}
+Diese Art von Duplikation ist wahrscheinlich am schwierigsten zu entdecken und adressieren. 
+Ein wichtiges Mittel hierzu ist die Kommunikation von Teams zu stärken, innerhalb sowie übergreifend.
+Weiter muss es einfacher sein, bereits erstellte Funktionalität wiederzuverwenden, als sie neu zu implementieren.
+
+\subsection{Orthogonalität}
+Wenn in der Geometrie zwei Vektoren orthogonal zueinander stehen, sind sie voneinander komplett unabhängig.
+
+In der Softwareentwicklung wurde diese Idee als wichtiges Grundprinzip übernommen: Wenn an einem Element eine Änderung vorgenommen wird, sollen davon möglichst wenige oder keine anderen Elemente beeinflusst werden. 
+Code soll möglichst modular aufgebaut sein, aufgeteilt in kleine Einheiten die klar definierte Funktionalität bieten.
+
+Erreichen können wir dies mittels verschiedenen Grundsätzen.\\
+\emph{Decoupling:} Wenige Abhängigkeiten bilden zwischen verschiedenen Modulen, resultiert meist in \emph{high cohesion}, was einen guten Zusammenhalt innerhalb eines Moduls beschreibt.
+\\
+\emph{Globale Daten vermeiden:} Globale Daten verbinden alle Module miteinander, die darauf zugreifen. Abhängigkeiten entstehen, Testing wird schwieriger, der Code wird schwieriger verständlich.
+\\
+\emph{Unit Tests als Gradmesser:} Wenn für einzelne Unit Tests verschiedenste Elemente aus dem Code eingebunden werden müssen, ist das ein schlechtes Zeichen. 
+
+
 \subsection{Good Enough}
 Die Qualität eines Produktes hängt von vielen Faktoren ab. Kosten, Zeit und Umfang eines Projektes spielen eine Rolle.
 Am wichtigsten ist es dabei, diese Faktoren auszubalancieren, sodass die Qualität \emph{für den vorgesehenen Zweck} ausreichend ist und den Endbenutzer zufriedenstellt.
-Sind die Kosten am schluss viel höher oder der Umfang viel kleiner als erwartet, ist bessere Qualität der erbrachten Leistung meist kein ausreichender Grund. \\
+Sind die Kosten am Schluss viel höher oder der Umfang viel kleiner als erwartet, ist bessere Qualität der erbrachten Leistung meist keine Rechtfertigung. \\
 \emph{Know when to stop.}
 
-- DRY, ETC, Orthogonalität\\
-- reversibility \\
-- naming\\
+\subsection{Reversibility}
+\emph{Es gibt keine finalen Entscheidungen.}
+
+
+\subsection{More..}
+- Naming\\
 - don't trust anyone (not even yourself)\\
 - programming by coincidence\\
 - listen to your lizard brain\\
 - Algorithm Speeds\\
 
+
 \section{Code}
-- Tracer Bullets\\
-- Prototypes\\
+Wenn es um effektive Techniken geht, wie \emph{pragmatische Projekte} umgesetzt werden können, werden folgende Punkte diskutiert.
+\subsection{Tracer Bullets}
+Leuchtende Projektile sollen im Militär anzeigen, ob man die Zielscheibe auch wirklich trifft oder nicht. 
+Genauso können beim Entwickeln kleine Einheiten von Funktionalität verwendet werden, um die End-zu-End Kommunikation quer durch alle Layers einer Architektur zu testen und zu garantieren.
+Sollte das Ziel verfehlt werden, können Anpassungen in der Strategie oder im Toolset umgehend vorgenommen werden.
+
+\subsection{Prototypes}
+Prototypen sind lauffähige Systeme, die gebaut werden um bestimmte Aspekte eines Projektes auszuloten, neue Technologien zu testen oder Risiken zu minimieren.
+Punkte wie Korrektheit, Komplettheit, Robustheit und Coding-Stil können vernachlässigt werden, da ein Prototyp nicht dazu da ist, später in der Produktion verwendet zu werden. 
+
+\subsection{Domain Languages}
+\textbf{>> todo <<}\\
+\emph{Interne:} \\
+\emph{Externe:} (Bsp. Ansible) Muss von einer Software / einem Tool  werden. \\
 
 \subsection{Methodik: You can't write perfect Software}
 - Design by Contract\\
