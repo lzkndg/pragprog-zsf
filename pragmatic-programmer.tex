@@ -1,0 +1,146 @@
+\documentclass[11pt, oneside, a4paper]{article}
+\usepackage{enumitem}
+\setlist{noitemsep}
+
+\begin{document}
+
+\title{Zusammenfassung: Pragmatic Programmer}
+\author{Group Assignment SEP2\\Luzia Kündig}
+\maketitle
+% \newpage
+
+% \tableofcontents
+% \newpage
+
+\section{Intro}
+Aus dem Vorwort:\\
+Das Buch "Pragmatic Programmer" fokussiert sich neben verschiedenen technischen Best Practices vor allem auf auch den sogenannten "Common Sense", also den gesunden Menschenverstand. Es fokussiert sich auf Themen, die jeden Programmierer beschäftigen, wie z.B.  
+\begin{itemize}[itemsep=4pt]
+    \item die Zukunft mit heutigen Entscheidungen "schmerzfreier" gestalten 
+    \item Dinge für seine Teammitglieder einfacher gestalten 
+    \item Fehler zu machen und damit umzugehen 
+    \item positive Gewohnheiten zu entwickeln 
+    \item sein Toolset als Programmierer zu verstehen und zu beherrschen 
+\end{itemize}
+
+Saron Yitbarek, der das Vorwort schreibt, vergleicht den Nutzen dieses Buches für Programmier-Einsteiger mit den "freundlichen Nachbarn", die dir in einer fremden Stadt Dinge zeigen, die wichtig sind: die effizientesten Pendlerstrecken, die besten Cafés, Kniffe und Tricks die man kennen sollte. Dieser Vergleich trifft für mich absolut ins Schwarze.  
+
+Da dieses Buch in 9 Kapiteln insgesamt 53 "Topics" quer durch den Alltag als Programmierer präsentiert, stellt es sich als eher schwierig heraus, dies alles in eine Zusammenfassung zu pressen. Hiermit möchte ich versuchen, die für mich hilfreichsten, interessantesten oder einfach amüsantesten Themen hervorzuheben. 
+\section{Die Philosophie}
+Die Grundeigenschaften eines Pragmatic Programmers, beschrieben unter dem Abschnitt \emph{Pragmatic Philosophy}. 
+\begin{itemize}[itemsep=4pt]
+    \item \emph{Think about your work}: If this sounds like hard work, then you're exhibiting the realistic characteristic. 
+    \item \emph{Care about your craft}: We who cut mere stones must always envision cathedrals. 
+    \item \emph{Kaizen (japanisch)}: Das Konzept, jeden Tag ganz kleine Verbesserungen vorzunehmen, um schlussendlich durchgehend hohe Qualität zu erreichen. 
+    \item \emph{Take responsibility}: It's your life.
+\end{itemize}
+
+\subsection{Software Entropie}
+Entropie in Software wird als \emph{Amount of Disorder} oder \emph{Software Rot} beschrieben. 
+Software altert. Um die gegebene Qualität über eine längere Zeit zu erhalten, sollten Probleme 
+(sog. \emph{Broken Windows}) wie zum Beispiel
+\begin{itemize}[itemsep=4pt]
+    \item schlechtes Design
+    \item falsche Entscheidungen
+    \item unschöner Code
+\end{itemize}
+möglichst bald behoben werden. So kann dazu beigetragen werden, dass auch zukünftige Arbeiten
+am Code auf gewissenhafte und saubere Weise ausgeführt werden.
+
+\subsection{Veränderung}
+
+Veränderung und der richtige Umgang damit ist das zweite grundlegende Konzept in diesem Buch. Passiert diese langsam und in kleinen Schritten, 
+wird sie viel weniger wahrgenommen als wenn auf einen Schlag etwas komplett anders ist.
+Im positiven kann man sich dies zu Nutze machen, indem man Verbesserungen in kleinen Schritten einführt und den Menschen Zeit gibt.
+
+Kleine, stetige Veränderungen in der Aussenwelt oder den Voraussetzungen in einem Projekt sind aber ebenso 
+einfach zu verpassen, wie sie im positiven anzunehmen sind. Deshalb sollte man stets den Blick
+vom aktuellen, spezifischen Problem auch wieder aufs grosse Ganze richten und hinterfragen, ob man immernoch 
+auf dem richtigen Weg ist. 
+
+\section{Wissen, Technologien, Beherrschen der Tools}
+\subsection{Knowledge Portfolio}
+Das beste und wichtigste Asset, das ein Programmierer in seinen Job mitbringt, ist Wissen. Unendlich viele verschiedene Technologien, die
+sich extrem schnell verändern, machen es unumgänglich, dass man sich stetig weiterbildet, und wenn es nur einige Minuten am Tag oder in der Woche sind.
+Neue Technologien ausprobieren, Kurse besuchen, News und Publikationen lesen sollte im Zeitplan einen fixen Platz haben und wird im 
+Idealfall auch vom Arbeitgeber geschätzt und vergütet, da es vor allem auch diesem zu Gute kommt.
+
+\subsection{Shell Games, Power Editing, Text Manipulation}
+
+- version control\\
+- debugging\\
+- engineering daybook\\
+
+\section{Good Design: Entscheidungen treffen}
+\subsection{Good Enough}
+Die Qualität eines Produktes hängt von vielen Faktoren ab. Kosten, Zeit und Umfang eines Projektes spielen eine Rolle.
+Am wichtigsten ist es dabei, diese Faktoren auszubalancieren, sodass die Qualität \emph{für den vorgesehenen Zweck} ausreichend ist und den Endbenutzer zufriedenstellt.
+Sind die Kosten am schluss viel höher oder der Umfang viel kleiner als erwartet, ist bessere Qualität der erbrachten Leistung meist kein ausreichender Grund. \\
+\emph{Know when to stop.}
+
+- DRY, ETC, Orthogonalität\\
+- reversibility \\
+- naming\\
+- don't trust anyone (not even yourself)\\
+- programming by coincidence\\
+- listen to your lizard brain\\
+- Algorithm Speeds\\
+
+\section{Code}
+- Tracer Bullets\\
+- Prototypes\\
+
+\subsection{Methodik: You can't write perfect Software}
+- Design by Contract\\
+- semantic invariants\\
+- crash early\\
+- outrunning your headlights\\
+- resource balancing\\
+- testing\\
+- refactoring\\
+
+\subsection{Bend or Break}
+- test\\
+- test\\
+
+\subsection{Concurrency}
+- Temporal Coupling: Zeitliche Abhängigkeit
+- Shared State equals Incorrect State\\
+- actors and processes\\
+- blackboards\\
+
+\section{Kommunizieren}
+Kommunikation als Programmierer kann sein wie man sich im Code ausdrückt (Prinzipien wie DRY, ETC, ..), dasselbe gilt aber auch für die sprachliche Kommunikation.
+Meetings mit Kunden, Kollegen und Vorgesetzten machen einen wichtigen Teil der Tätigkeit aus und entscheiden meist über Erfolg oder Misserfolg eines Projekts.
+Deshalb sollten auch hier die eigenen Fähigkeiten gepflegt und gestärkt werden.
+
+\begin{itemize}[itemsep=4pt]
+    \item Kenne dein Publikum
+    \item Wisse, was du hinüberbringen willst
+    \item Wähle den richtigen Moment
+    \item Wähle eine passende Ausdrucksart
+    \item Beziehe dein Publikum mit ein
+    \item Höre zu
+    \item Bleibe keine Antworten schuldig
+    \item Bringe Optionen statt Ausreden
+    \item \textbf{Ja sagen}, wenn man sich sicher ist, dass etwas in der gewünschten Zeit oder auf die gewünschte Weise umsetzbar ist. 
+    \item \textbf{Nein sagen}, wenn eine Deadline nicht sicher einzuhalten ist, man mehr Zeit zum abklären oder einschätzen braucht oder auf Unterstützung angewiesen ist.
+    \item \textbf{Dokumentation} dort platzieren, wo sie gelesen wird. \\ Das \emph{wie} soll durch den Code selbsterklärend sein, das \emph{warum} kann als Kommentar eingefügt werden.\\Speziell bei APIs
+\end{itemize}
+
+\section{Projekte Planen, Schätzen, Erfahrungswerte}
+- how accurate is accurate enough\\
+- what to say when asked for an estimate\\
+- the requirements pit
+
+\section{Working in a (pragmatic) Team on (pragmatic) Projects}
+- solving impossible puzzles\\
+- working together\\
+- pragmatic teams\\
+- coconuts don't cut it - cargo cult\\
+
+\section{\emph{agile thinking}}
+Hinterfragen der Situation, der Entscheidungen und der Methoden
+
+
+\end{document}
