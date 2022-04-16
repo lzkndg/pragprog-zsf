@@ -1,5 +1,7 @@
-\documentclass[11pt, oneside, a4paper]{article}
+\documentclass[10pt, oneside, a4paper]{article}
 \usepackage{enumitem}
+\usepackage{geometry}
+\geometry{textwidth=127mm}
 \setlist{noitemsep}
 
 \begin{document}
@@ -66,10 +68,24 @@ Neue Technologien ausprobieren, Kurse besuchen, News und Publikationen lesen sol
 Idealfall auch vom Arbeitgeber geschätzt und vergütet, da es vor allem auch diesem zu Gute kommt.
 
 \subsection{Shell Games, Power Editing, Text Manipulation}
+Wenn sich die grundlegenden, sich ständig wiederholenden Aufgaben der täglichen Arbeit auch nur um ein wenig effizienter erledigen lassen, hat das eine grosse Auswirkung auf die Produktivität.
+Deshalb bringt es grosse Vorteile, sich mit Shell Commands oder Editing Shortcuts zu befassen. Man muss nur ein wenig Zeit investieren.\\
 
-- version control\\
-- debugging\\
-- engineering daybook\\
+\subsection{Version Control}
+Egal ob bei der Arbeit im Team an einem längeren Projekt, oder nur zum sichern verschiedener Einstellungen auf dem eigenen Computer, bringt Version Control grosse Vorteile.
+Abgesehen von der offensichtlichen Funktionalität wie Branching oder der einfache Rollback kann vor allem auch das automatisierte Builden, Testen oder Deployen von Code mittels 
+Version Control Systemen erfolgt werden.
+
+\subsection{Debugging}
+Zum diesem Thema geben die Authoren verschiedene gute Tipps
+\begin{itemize}[itemsep=4pt]
+    \item Fix the Problem, not the Blame \\ Wichtiger ist, dass das Problem behoben wird, nicht wer schuld ist.
+    \item Don't Panic \\ Das Problem soll systematisch und überlegt angegangen werden, so wie auch die tägliche Arbeit erledigt wird. Im Panik-Modus werden wahrscheinlich nicht 
+    die besten Entscheidungen getroffen. 
+    \item Debugging Strategien \\ Abgesehen von den verschiedenen Vorgehensweisen beim Debugging (\emph{Rubber Duck Debugging, Binary Chop, Elimination, Logging}) 
+    sollte grosser Wert auch darauf gelegt werden, 
+    dass der Bug mittels neuen Unit Tests zukünftig abgefangen wird, sodass dasselbe Problem nicht erneut gelöst werden muss.
+\end{itemize}
 
 \section{The Essence of Good Design: Entscheidungen treffen}
 
@@ -108,14 +124,6 @@ Wenn in der Geometrie zwei Vektoren orthogonal zueinander stehen, sind sie vonei
 In der Softwareentwicklung wurde diese Idee als wichtiges Grundprinzip übernommen: Wenn an einem Element eine Änderung vorgenommen wird, sollen davon möglichst wenige oder keine anderen Elemente beeinflusst werden. 
 Code soll möglichst modular aufgebaut sein, aufgeteilt in kleine Einheiten die klar definierte Funktionalität bieten.
 
-Erreichen können wir dies mittels verschiedenen Grundsätzen.\\
-\emph{Decoupling:} Wenige Abhängigkeiten bilden zwischen verschiedenen Modulen, resultiert meist in \emph{high cohesion}, was einen guten Zusammenhalt innerhalb eines Moduls beschreibt.
-\\
-\emph{Globale Daten vermeiden:} Globale Daten verbinden alle Module miteinander, die darauf zugreifen. Abhängigkeiten entstehen, Testing wird schwieriger, der Code wird schwieriger verständlich.
-\\
-\emph{Unit Tests als Gradmesser:} Wenn für einzelne Unit Tests verschiedenste Elemente aus dem Code eingebunden werden müssen, ist das ein schlechtes Zeichen. 
-
-
 \subsection{Good Enough}
 Die Qualität eines Produktes hängt von vielen Faktoren ab. Kosten, Zeit und Umfang eines Projektes spielen eine Rolle.
 Am wichtigsten ist es dabei, diese Faktoren auszubalancieren, sodass die Qualität \emph{für den vorgesehenen Zweck} ausreichend ist und den Endbenutzer zufriedenstellt.
@@ -126,13 +134,14 @@ Sind die Kosten am Schluss viel höher oder der Umfang viel kleiner als erwartet
 \emph{Es gibt keine finalen Entscheidungen.}
 
 
-\subsection{More..}
-- Naming\\
-- don't trust anyone (not even yourself)\\
-- programming by coincidence\\
-- listen to your lizard brain\\
-- Algorithm Speeds\\
+\subsection{Weitere Konzepte}
 
+\emph{Listen to your lizard brain: } Auf unsere Instinkte zu hören wird einem als Mensch unweigerlich abtrainiert. Das Unterbewusstsein als solches 
+kann aber sehr oft hilfreich sein, und kann auch mittels verschiedenen Tricks wieder trainiert werden.  
+
+\emph{Programming by Coincidence: } Sich seiner Umgebung bewusst sein, hilft dem Frosch im heissen Wasser (siehe Boiled Frogs). Dasselbe gilt für seinen Code,
+und die Funktionsweise davon. Etwas, das zwar funktioniert aber nicht wirklich verstanden wird, kann im nächsten Moment zu Problemen führen, mit denen man nicht rechnet.
+Testen ist besser als annehmen.
 
 \section{Code}
 Wenn es um effektive Techniken geht, wie \emph{pragmatische Projekte} umgesetzt werden können, werden folgende Punkte diskutiert.
@@ -145,29 +154,75 @@ Sollte das Ziel verfehlt werden, können Anpassungen in der Strategie oder im To
 Prototypen sind lauffähige Systeme, die gebaut werden um bestimmte Aspekte eines Projektes auszuloten, neue Technologien zu testen oder Risiken zu minimieren.
 Punkte wie Korrektheit, Komplettheit, Robustheit und Coding-Stil können vernachlässigt werden, da ein Prototyp nicht dazu da ist, später in der Produktion verwendet zu werden. 
 
-\subsection{Domain Languages}
-\textbf{>> todo <<}\\
-\emph{Interne:} \\
-\emph{Externe:} (Bsp. Ansible) Muss von einer Software / einem Tool  werden. \\
-
 \subsection{Methodik: You can't write perfect Software}
-- Design by Contract\\
-- semantic invariants\\
-- crash early\\
-- outrunning your headlights\\
-- resource balancing\\
-- testing\\
-- refactoring\\
+Um dieser Tatsache entgegenzuwirken, gibt es verschiedenste Grundlagen, die beachtet werden sollten.
+
+\emph{Design by Contract:} Methoden stellen \emph{Preconditions} an den Aufrufer. Werden diese eingehalten, 
+    garantieren Sie gewisse Anforderungen an das Resultat, die \emph{Postconditions}. \emph{Class Invariants} sind Garantien, 
+    die dem Aufrufer einer Methode gemacht werden über den Status der Daten vor und nach dem Methodenaufruf. 
+
+\emph{Semantic Invariants:} Manche Vorgehensweisen sind in bestimmten Kontexten implizit oder explizit vorgegeben.
+Beispielsweise wird bei Finanztransaktionen im Fehlerfall immer zugunsten des Kunden entschieden.
+
+\emph{Crash Early:} Im Fehlerfall ist es immer besser, die Aktion abzubrechen anstatt mit möglicherweise fehlerhaften Daten weitere Aufrufe zu tätigen. 
+Der Fehler bleibt damit isoliert an Ort und Stelle des Geschehens.
+
+\emph{Assertive Programming:} Assertions können verwendet werden, um sicherzustellen dass das Unmögliche nicht eintritt. Fälle, die aus Sicht des Programmierers "garantiert nie" auftreten, 
+können optimal abgefangen werden mittels einem Assertion Check. Somit ist sofort klar, falls irgendwo ein Fehler aufgetreten ist und der Unmögliche Fall dadurch eingetreten ist.
+
+\emph{Transforming Programming:} Mit dem Fokus darauf, dass ein Programm grundsätzlich einen gegebenen Input in einen anderen Output umwandelt, kann der Ablauf eines 
+Programms auch als Abfolge von verschiedenen Transformationen auf gegebenen Daten angesehen werden.
+
+\emph{Resource Balancing:} Das Öffnen und Schliessen von Handles auf Dateien oder anderen Ressourcen muss immer koordiniert ablaufen. 
+Die Verantwortung dazu muss klar definiert sein, auch und besonders im Fehlerfall.
+
+\emph{Test to code:} Sich Gedanken darüber machen, wie eine Funktionalität getestet werden soll, kann in vielen Fällen dazu beitragen, dass die effektive Umsetzung anschliessend
+einfacher und besser umgesetzt wird. Man betrachtet den Code nicht als Autor, sondern als Nutzer. Das Ziel ist klarer, die Umsezung kann Schritt für Schritt erfolgen und wird direkt getestet. 
+
+\emph{Refactoring:} Immer dann, wenn man etwas gelernt hat. Wenn einem schlechtes Design oder Duplizierung auffällt. Wenn sich Anforderungen verändert haben. Wenn die Tests grün sind. 
+Refactoring, das zu besserem, einfacherem und klarerem Code beiträgt, sollte wann immer möglich ausgeführt werden. 
+
+\emph{Outrunning your Headlights:} Ein Appell, mit möglichst kleinen Schritten vorwärts zu kommen, um ganz im agilen Sinne den Kurs jederzeit korrigieren zu können. 
+Wie beim Autofahren, wo man auf Sichtweite jederzeit anhalten können muss. 
+
+\emph{Stay safe out there:} Heutzutage kann nicht mehr davon ausgegangen werden, dass sich niemand für eine Applikation interessiert, wenn sie nicht bekannt ist. 
+Alles, was öffentlich erreichbar ist oder aus unsicherer Quelle stammt, sollte als verwundbar oder potenziell böswillig angeschaut werden, und erst nach gründlicher Überprüfung
+in der Software weiterverwendet werden. Kryptographie auf keinen Fall selber implementieren.
 
 \subsection{Bend or Break}
-- test\\
-- test\\
+Während das Prinzip \emph{Easier To Change} besagt, dass unsere Entscheidungen immer auf möglichst einfach anpassbare Software abzielen sollten, geht dieses Kapitel darauf ein,
+wie diese Flexibilität erreicht werden kann.
+
+\emph{Decoupling:} Wenige Abhängigkeiten bilden zwischen verschiedenen Modulen, resultiert meist in \emph{high cohesion}, 
+was einen guten Zusammenhalt innerhalb eines Moduls beschreibt.
+
+\emph{Globale Daten vermeiden:} Globale Daten verbinden alle Module miteinander, die darauf zugreifen. 
+Abhängigkeiten entstehen, Testing wird schwieriger, der Code wird schwieriger verständlich.
+
+\emph{Unit Tests als Gradmesser:} Wenn für einzelne Unit Tests verschiedenste Elemente aus dem Code eingebunden werden müssen, 
+ist das ein schlechtes Zeichen. 
+
+\emph{Inheritance Tax: } Auch Vererbung zwischen Klassen schränkt die Anpassbarkeit von Code ein, und sollte meist vermieden werden. 
+Alternativen sind \emph{Interfaces}, \emph{Delegation} und \emph{Mixins}.
+
+\emph{Configuration: } Mit externen Quellen für Konfigurationsdaten können Applikationen auf einfache Art und Weise an verschiedene Umgebungen und Kunden angepasst werden.
+Dies kann mittels Textfiles in gängigen Formaten wie JSON oder YAML erreicht werden, oder die Informatinen können in der Datenbank abgelegt und eventuell mit 
+einem geeigneten Interface zugänglich gemacht werden.
+
+\subsection{Events}
+In der realen Welt geschehen Dinge, und wir reagieren darauf. Software sollte, um uns bestmöglich zu unterstützen, dasselbe können. 
+Das Prinzip von Events kann auf verschiedene Arten implementiert werden, eine sehr elegante kann das Design einer \emph{Finite State Machine} sein. 
+Diese definiert verschiedene Zustände, Ereignisse und dazugehörige Übergänge. Zwei weitere Varianten sind \emph{Publish/Subscribe} oder \emph{Streams.} 
 
 \subsection{Concurrency}
-- Temporal Coupling: Zeitliche Abhängigkeit
-- Shared State equals Incorrect State\\
-- actors and processes\\
-- blackboards\\
+Mit dem Begriff \emph{Temporal Coupling} wird die zeitliche Abhängigkeit zwischen verschiedenen Aktionen beschrieben. A muss ausgeführt werden, erst dann kann B gestartet werden.
+Solche Einschränkungen sind offensichtlich nicht wünschenswert. Effiziente Parallelisierung wird verunmöglicht.
+
+\emph{Shared State is Incorrect State}
+
+\emph{Actors and Processes}
+
+\emph{Blackboards}
 
 \section{Kommunizieren}
 Kommunikation als Programmierer kann sein wie man sich im Code ausdrückt (Prinzipien wie DRY, ETC, ..), dasselbe gilt aber auch für die sprachliche Kommunikation.
@@ -188,19 +243,42 @@ Deshalb sollten auch hier die eigenen Fähigkeiten gepflegt und gestärkt werden
     \item \textbf{Dokumentation} dort platzieren, wo sie gelesen wird. \\ Das \emph{wie} soll durch den Code selbsterklärend sein, das \emph{warum} kann als Kommentar eingefügt werden.\\Speziell bei APIs
 \end{itemize}
 
-\section{Projekte Planen, Schätzen, Erfahrungswerte}
-- how accurate is accurate enough\\
-- what to say when asked for an estimate\\
-- the requirements pit
 
 \section{Working in a (pragmatic) Team on (pragmatic) Projects}
-- solving impossible puzzles\\
-- working together\\
-- pragmatic teams\\
-- coconuts don't cut it - cargo cult\\
+\subsection{Estimating}
+Schätzwerte in der Softwareentwicklung sind sehr wichtig aber auch sehr schwierig, vor allem für unerfahrene Entwickler.
+
+Die geforderte Genauigkeit und die angegebene Grösseneinheit sind voneinander abhängig, beispielsweise wird bei \emph{anderthalb Monaten} viel mehr Ungenauigkeit
+erwartet oder in Kauf genommen, als bei einer Angabe von \emph{30 Arbeitstagen.}
+
+Die Basis für gute Schätzungen ist Erfahrung. Sind Anforderungen, Konzepte und verwendete Tools bekannt, ist die Antwort wahrscheinlich ziemlich genau.
+Andernfalls ist es praktisch unmöglich, eine Schätzung abzugeben, ohne mehr Zeit in Abklärungen zu investieren. Dies sollte immer klar kommuniziert werden.
+
+Weiter sind Schätzwerte auch immer abhängig von verschiedenen äusseren Einflüssen, diese sollten genauso mit einbezogen werden. 
+Eine gute Schätzung für alles ausser ganz simplen Anforderungen beinhaltet deshalb stets mehrere Szenarien.
+
+\subsection{Requirements}
+Der Grundsatz: \emph{Niemand weiss genau, was er will.}
+Der Kunde weiss meist auch nicht, was die Software alles bieten kann. Als Softwareentwickler gehört es zur Aufgabe, mit dem Kunden zusammen 
+herauszufinden, möglicherweise über zahlreiche Iterationen, ob das Produkt wirklich den Anforderungen entspricht, bzw. 
+wie diese Anforderungen denn überhaupt aussehen. Unklarheiten müssen angesprochen und bereinigt werden. 
+
+Idealerweise kann der Entwickler sich mit den späteren End-Usern direkt austauschen, um deren Arbeitsweise und Bedürfnisse zu erkennen.
+Ein Projekt-Glossar kann helfen, dass alle Beteiligten dieselbe Sprache sprechen.
+
+\subsection{Solving Impossible Puzzles}
+Wenn ein Problem nicht lösbar erscheint, hilft es meist einen Schritt zurück zu machen. Sind die Annahmen zu allen Voraussetzungen richtig?
+Gibt es Variablen, die verändert werden könnten?
+
+Oft hilft eine Pause, Ablenkung, das Problem einer anderen Person erklären.
+
+\subsection{Working together}
+Methoden wie Pair- oder Mob Programming helfen in verschiedenen Hinsichten: der Lerneffekt für unerfahrene Programmierer ist gross, der sofortige Qualitäts-Review durch
+andere Personen verbessert das Resultat, und mögliche Probleme, die alleine viel Zeit in Anspruch nehmen würden, können in der Gruppe meist schneller gelöst werden.
 
 \section{\emph{agile thinking}}
-Hinterfragen der Situation, der Entscheidungen und der Methoden
-
+Stetiges Hinterfragen der Situation, der Entscheidungen und der Methoden.\\
+Requirements und Feedback im Loop abholen.\\
+In Stress-Situationen: DON'T PANIC AND BRING A TOWEL.\\
 
 \end{document}
